@@ -7,14 +7,14 @@ class BankAccount:
     def deposit(self, amount):
         if amount > 0:
             self.balance += amount
-            print(f"Deposited {amount}. Balance: {self.balance}")
+            print(f"Deposited {amount}.")
         else:
             print("Deposit amount must be positive.")
 
     def withdraw(self, amount):
         if amount > 0 and amount <= self.balance:
             self.balance -= amount
-            print(f"Withdrew {amount}. Balance: {self.balance}")
+            print(f"Withdrew {amount}.")
         else:
             print("Invalid withdrawal amount.")
 
@@ -22,10 +22,10 @@ class BankAccount:
         print(f"Name: {self.name}, Account: {self.account_number}, Balance: {self.balance}")
 
 def main():
-    name = input("Enter the depositor's name: ")
+    name = input("Enter depositor name: ")
     account_number = input("Enter account number: ")
     balance = float(input("Enter initial balance: "))
-    
+
     account = BankAccount(name, account_number, balance)
     account.display_details()
 
@@ -42,7 +42,7 @@ def main():
         elif choice == "3":
             account.display_details()
         elif choice == "4":
-            print("Goodbye!")
+            print("program exitted")
             break
         else:
             print("Invalid choice.")
