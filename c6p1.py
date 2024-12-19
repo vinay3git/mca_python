@@ -1,62 +1,51 @@
 class BankAccount:
-    def __init__(self, name, account_number, account_type, balance):
+    def __init__(self, name, account_number, balance):
         self.name = name
         self.account_number = account_number
-        self.account_type = account_type
         self.balance = balance
 
     def deposit(self, amount):
         if amount > 0:
             self.balance += amount
-            print(f"Deposited {amount}. New balance: {self.balance}")
+            print(f"Deposited {amount}. Balance: {self.balance}")
         else:
-            print("Deposit amount must be greater than zero.")
+            print("Deposit amount must be positive.")
 
     def withdraw(self, amount):
-        if amount <= 0:
-            print("Withdrawal amount must be greater than zero.")
-        elif amount > self.balance:
-            print("Insufficient balance!")
-        else:
+        if amount > 0 and amount <= self.balance:
             self.balance -= amount
-            print(f"Withdrew {amount}. New balance: {self.balance}")
+            print(f"Withdrew {amount}. Balance: {self.balance}")
+        else:
+            print("Invalid withdrawal amount.")
+
     def display_details(self):
-        print(f"\nAccount Details:")
-        print(f"Name: {self.name}")
-        print(f"Account Number: {self.account_number}")
-        print(f"Account Type: {self.account_type}")
-        print(f"Balance: {self.balance}")
-def get_account_details():
-    name = input("Enter the name of the depositor: ")
-    account_number = input("Enter the account number: ")
-    account_type = input("Enter the account type (e.g., Savings, Current): ")
-    balance = float(input("Enter the initial balance: "))
-    return name, account_number, account_type, balance
+        print(f"Name: {self.name}, Account: {self.account_number}, Balance: {self.balance}")
 
 def main():
-    name, account_number, account_type, balance = get_account_details()
-    account = BankAccount(name, account_number, account_type, balance)
+    name = input("Enter the depositor's name: ")
+    account_number = input("Enter account number: ")
+    balance = float(input("Enter initial balance: "))
+    
+    account = BankAccount(name, account_number, balance)
     account.display_details()
+
     while True:
-        print("\nChoose an option:")
-        print("1. Deposit")
-        print("2. Withdraw")
-        print("3. Display account details")
-        print("4. Exit")
-        choice = int(input("Enter your choice: "))
-        if choice == 1:
-            amount = float(input("Enter the amount to deposit: "))
+        print("\n1. Deposit\n2. Withdraw\n3. Display details\n4. Exit")
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            amount = float(input("Deposit amount: "))
             account.deposit(amount)
-        elif choice == 2:
-            amount = float(input("Enter the amount to withdraw: "))
+        elif choice == "2":
+            amount = float(input("Withdrawal amount: "))
             account.withdraw(amount)
-        elif choice == 3:
+        elif choice == "3":
             account.display_details()
-        elif choice == 4:
-            print("Exiting... Thank you!")
+        elif choice == "4":
+            print("Goodbye!")
             break
         else:
-            print("Invalid choice. Please try again.")
+            print("Invalid choice.")
 
 if __name__ == "__main__":
     main()
