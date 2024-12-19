@@ -4,16 +4,10 @@ class Rectangle:
         self.breadth = breadth
 
     def area(self):
-        """Method to calculate the area of the rectangle."""
         return self.length * self.breadth
-
-    def perimeter(self):
-        """Method to calculate the perimeter of the rectangle."""
-        return 2 * (self.length + self.breadth)
 
 
 def get_rectangle_dimensions(rect_num):
-    """Function to get the dimensions of a rectangle."""
     print(f"\nEnter the dimensions for Rectangle {rect_num}:")
     length = float(input("Enter the length of the rectangle: "))
     breadth = float(input("Enter the breadth of the rectangle: "))
@@ -21,12 +15,11 @@ def get_rectangle_dimensions(rect_num):
 
 
 def compare_rectangles(rect1, rect2):
-    """Compare areas of two rectangles."""
     area1 = rect1.area()
     area2 = rect2.area()
 
-    print(f"\nRectangle 1 - Area: {area1} | Perimeter: {rect1.perimeter()}")
-    print(f"Rectangle 2 - Area: {area2} | Perimeter: {rect2.perimeter()}")
+    print(f"\nRectangle 1 - Area: {area1}")
+    print(f"Rectangle 2 - Area: {area2}")
 
     if area1 < area2:
         print("\nRectangle 1 has a smaller area than Rectangle 2.")
