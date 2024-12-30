@@ -1,20 +1,19 @@
 import csv
+filename = "your_data_file.csv"  
 
-# File name
-csv_file = "data.csv"  # Replace with your CSV file name
+with open(filename, 'r') as file:
+    data = [line.strip().split(',') for line in file.readlines()]
 
-# Get columns to read from user input (comma-separated, 1-based index)
-columns_input = input("Enter column numbers to read (comma-separated, 1-based index): ")
+input_columns = input("Enter column numbers to read (comma-separated, 1-based index): ").split(',')
 
-# Convert the user input into a list of integers (1-based index converted to 0-based)
-columns_to_read = [int(i) - 1 for i in columns_input.split(',')]
+columns_to_read = [int(i) - 1 for i in input_columns]
 
-# Open the CSV file in read mode
-with open(csv_file, 'r') as file:
-    csv_reader = csv.reader(file)
+for row in data:
+    selected_columns = []
+    for col in columns_to_read:
+        if col < len(row):  
+            selected_columns.append(row[col])
+        else:
+            selected_columns.append(None)  
     
-    # Iterate over each row in the CSV file
-    for row in csv_reader:
-        # Extract the specified columns and print them
-        selected_columns = [row[i] for i in columns_to_read]
-        print(selected_columns)
+    print(selected_columns)
